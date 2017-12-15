@@ -38,6 +38,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="TeaAndChocoLibrary">
+      <HintPath>Z:\DPINT_Wk456_Koffiemachine\TeaAndChocoLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Amount.cs" />

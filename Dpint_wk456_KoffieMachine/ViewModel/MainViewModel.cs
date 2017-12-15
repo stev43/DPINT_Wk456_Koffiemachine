@@ -12,15 +12,15 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private CoffeeFactory _coffeeFactory;
+        private DrinkFactory _coffeeFactory;
         private Dictionary<string, double> _cashOnCards;
         public ObservableCollection<string> LogText { get; private set; }
 
         public MainViewModel()
         {
-            _coffeeFactory = new CoffeeFactory();
-            _coffeeFactory.AddCoffeeToList("Coffee", typeof(Coffee));
-            _coffeeFactory.AddCoffeeToList("Espresso", typeof(Espresso));
+            _coffeeFactory = new DrinkFactory();
+            _coffeeFactory.AddDrinkToList("Coffee", typeof(Coffee));
+            _coffeeFactory.AddDrinkToList("Espresso", typeof(Espresso));
 
 
             _coffeeStrength = Strength.Normal;
@@ -151,11 +151,11 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             switch (drinkName)
             {
                 case "Coffee":
-                    _selectedDrink = _coffeeFactory.GetCoffee(drinkName);
+                    _selectedDrink = _coffeeFactory.GetDrink(drinkName);
                     ((Coffee)_selectedDrink).DrinkStrength = CoffeeStrength;
                     break;
                 case "Espresso":
-                    _selectedDrink = _coffeeFactory.GetCoffee(drinkName);
+                    _selectedDrink = _coffeeFactory.GetDrink(drinkName);
                     break;
                 case "Capuccino":
                     _selectedDrink = new Capuccino();
@@ -189,11 +189,11 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             switch (drinkName)
             {
                 case "Coffee":
-                    _selectedDrink = _coffeeFactory.GetCoffee(drinkName);
+                    _selectedDrink = _coffeeFactory.GetDrink(drinkName);
                     ((Coffee)_selectedDrink).DrinkStrength = CoffeeStrength;
                     break;
                 case "Espresso":
-                    _selectedDrink = _coffeeFactory.GetCoffee(drinkName);
+                    _selectedDrink = _coffeeFactory.GetDrink(drinkName);
                     break;
                 case "Capuccino":
                     _selectedDrink = new Capuccino();
@@ -223,11 +223,11 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             switch (drinkName)
             {
                 case "Coffee":
-                    _selectedDrink = _coffeeFactory.GetCoffee(drinkName);
+                    _selectedDrink = _coffeeFactory.GetDrink(drinkName);
                     ((Coffee)_selectedDrink).DrinkStrength = CoffeeStrength;
                     break;
                 case "Espresso":
-                    _selectedDrink = _coffeeFactory.GetCoffee(drinkName);
+                    _selectedDrink = _coffeeFactory.GetDrink(drinkName);
                     break;
                 default:
                     LogText.Add($"Could not make {drinkName} with milk, recipe not found.");
@@ -253,11 +253,11 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             switch (drinkName)
             {
                 case "Coffee":
-                    _selectedDrink = _coffeeFactory.GetCoffee(drinkName);
+                    _selectedDrink = _coffeeFactory.GetDrink(drinkName);
                     ((Coffee)_selectedDrink).DrinkStrength = CoffeeStrength;
                     break;
                 case "Espresso":
-                    _selectedDrink = _coffeeFactory.GetCoffee(drinkName);
+                    _selectedDrink = _coffeeFactory.GetDrink(drinkName);
                     break;
                 default:
                     LogText.Add($"Could not make {drinkName} with milk, recipe not found.");

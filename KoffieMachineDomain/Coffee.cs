@@ -34,7 +34,7 @@ namespace KoffieMachineDomain
 
         public override double GetPrice()
         {
-            return BaseDrinkPrice;
+            return 1;
         }
 
         public override void LogDrinkMaking(ICollection<string> log)

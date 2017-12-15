@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace KoffieMachineDomain
 {
-    public class CafeAuLait : Drink
+    public class CafeAuLait : Coffee
     {
-        public override string Name => "Café au Lait";
+
+        public CafeAuLait(Strength strength = Strength.Normal, Amount amount = Amount.Normal, string name = "Café au Lait") : base(strength, amount, name)
+        {
+
+        }
 
         public override double GetPrice()
         {

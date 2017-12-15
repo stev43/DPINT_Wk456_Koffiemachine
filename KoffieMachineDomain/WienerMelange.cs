@@ -8,12 +8,10 @@ namespace KoffieMachineDomain
 {
     public class WienerMelange : Capuccino
     {
-        public override string Name => "Wiener Melange";
 
-        public WienerMelange()
+        public WienerMelange() : base(Strength.Weak, Amount.Normal, "Wiener Melange")
         {
-            HasSugar = false;
-            DrinkStrength = Strength.Weak;
+            //    HasSugar = false;
         }
 
         public override double GetPrice()

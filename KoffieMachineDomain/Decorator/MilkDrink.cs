@@ -6,26 +6,27 @@ using System.Threading.Tasks;
 
 namespace KoffieMachineDomain.Decorator
 {
-    class SugarDecorator : DrinkDecorator
+    public class MilkDrink : DrinkDecorator
     {
-        public virtual Amount SugarAmount { get; private set; }
+        public virtual Amount MilkAmount { get; private set; }
 
-        public SugarDecorator(Amount amount)
+        public MilkDrink(Amount amount, Drink drink)
         {
-            SugarAmount = amount;
+            MilkAmount = amount;
+            base.component = drink;
         }
 
         public override double GetPrice()
         {
-            return component.GetPrice() + 0.1;
+            return component.GetPrice() + 0.15;
         }
 
         public override void LogDrinkMaking(ICollection<string> log)
         {
             component.LogDrinkMaking(log);
 
-            log.Add($"Setting sugar amount to {SugarAmount}.");
-            log.Add("Adding sugar...");
+            log.Add($"Setting milk amount to {MilkAmount}.");
+            log.Add("Adding milk to coffee...");
         }
     }
 }

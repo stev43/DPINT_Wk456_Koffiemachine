@@ -6,34 +6,25 @@ using System.Threading.Tasks;
 
 namespace KoffieMachineDomain
 {
-    public class Capuccino : Drink
+    public class Capuccino : Coffee
     {
-        public override string Name => "Capuccino";
-        protected virtual Strength DrinkStrength { get; set; }
-
-        public Capuccino()
+        public Capuccino(Strength strength = Strength.Normal, Amount amount = Amount.Normal, string name = "Capuccino") : base(strength, amount, name)
         {
-            DrinkStrength = Strength.Normal;
+
+
         }
 
         public override double GetPrice()
         {
             return BaseDrinkPrice + 0.8;
         }
+
         public override void LogDrinkMaking(ICollection<string> log)
         {
             base.LogDrinkMaking(log);
             log.Add($"Setting coffee strength to {DrinkStrength}.");
             log.Add("Filling with coffee...");
 
-            //if (HasSugar)
-            //{
-            //    log.Add($"Setting sugar amount to {SugarAmount}.");
-            //    log.Add("Adding sugar...");
-            //}
-
-            log.Add("Creaming milk...");
-            log.Add("Adding milk to coffee...");
             log.Add($"Finished making {Name}");
         }
     }

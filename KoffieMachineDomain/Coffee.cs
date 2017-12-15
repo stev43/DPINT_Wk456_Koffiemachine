@@ -8,12 +8,28 @@ namespace KoffieMachineDomain
 {
     public class Coffee : Drink
     {
-        public virtual Strength DrinkStrength { get; set; }
+        public Strength DrinkStrength { get; set; }
+        public Amount Amount { get; set; }
+
         private string _name;
-        public Coffee(Strength strength = Strength.Normal, string name = "Koffie")
+        public override string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        public Coffee()
+        {
+            DrinkStrength = Strength.Normal;
+            Amount = Amount.Normal;
+            Name = "Koffie";
+        }
+
+        protected Coffee(Strength strength = Strength.Normal, Amount amount = Amount.Normal, string name = "Koffie")
         {
             _name = name;
             DrinkStrength = strength;
+            Amount = amount;
         }
 
         public override double GetPrice()
@@ -25,9 +41,8 @@ namespace KoffieMachineDomain
         {
             base.LogDrinkMaking(log);
             log.Add($"Setting coffee strength to {DrinkStrength}.");
+            log.Add($"Setting coffee amount to {Amount.Few}.");
             log.Add("Filling with coffee...");
-
-            log.Add($"Finished making {Name}");
         }
     }
 }

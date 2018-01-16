@@ -7,9 +7,9 @@ using KoffieMachineDomain.Decorator;
 
 namespace KoffieMachineDomain.Strategies.BasicRecipes
 {
-    class EspressoWIthSugarAndMilkStrategy:IDrinkStrategy
+    class EspressoWithMilkAndSugarStrategy:IDrinkStrategy
     {
-        public const String Name = "Espresso with sugar and milk";
+        public const String Name = "EspressoWithMilkAndSugar";
 
         public Drink CreateDrink(Strength strength, Amount sugarAmount, Amount milkAmount)
         {

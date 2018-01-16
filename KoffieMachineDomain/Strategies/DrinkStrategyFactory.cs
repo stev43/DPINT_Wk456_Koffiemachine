@@ -21,8 +21,15 @@ namespace KoffieMachineDomain.Strategies
         {
             _strategyDictionairy = new Dictionary<string, IDrinkStrategy>();
             _strategyDictionairy[CoffeeStrategy.Name] = new CoffeeStrategy();
+            _strategyDictionairy[CoffeeWithMilkStrategy.Name] = new CoffeeWithMilkStrategy();
+            _strategyDictionairy[CoffeeWithSugarStrategy.Name] = new CoffeeWithSugarStrategy();
+            _strategyDictionairy[CoffeeWithMilkAndSugarStrategy.Name] = new CoffeeWithMilkAndSugarStrategy();
             _strategyDictionairy[EspressoStrategy.Name] = new EspressoStrategy();
+            _strategyDictionairy[EspressoWithMilkStrategy.Name] = new EspressoWithMilkStrategy();
+            _strategyDictionairy[EspressoWithSugarStrategy.Name] = new EspressoWithSugarStrategy();
+            _strategyDictionairy[EspressoWIthSugarAndMilkStrategy.Name] = new EspressoWIthSugarAndMilkStrategy();
             _strategyDictionairy[CapuccinoStrategy.Name] = new CapuccinoStrategy();
+            _strategyDictionairy[CapuccinoWithSugarStrategy.Name] = new CapuccinoWithSugarStrategy();
             _strategyDictionairy[WienerMelangeStrategy.Name] = new WienerMelangeStrategy();
             _strategyDictionairy[CafeAuLaitStrategy.Name] = new CafeAuLaitStrategy();
             _strategyDictionairy[TeaStrategy.Name] = new TeaStrategy();

@@ -9,7 +9,7 @@ namespace KoffieMachineDomain.Strategies.BasicRecipes
 {
     class EspressoWithSugarStrategy:IDrinkStrategy
     {
-        public const String Name = "Espresso with sugar";
+        public const String Name = "EspressoWithSugar";
 
         public Drink CreateDrink(Strength strength, Amount sugarAmount, Amount milkAmount)
         {

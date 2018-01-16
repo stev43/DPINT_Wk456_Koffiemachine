@@ -59,9 +59,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strategies\BasicRecipes\CafeAuLaitStrategy.cs" />
     <Compile Include="Strategies\BasicRecipes\CapuccinoStrategy.cs" />
+    <Compile Include="Strategies\BasicRecipes\CapuccinoWithSugarStrategy.cs" />
+    <Compile Include="Strategies\BasicRecipes\CoffeeWithMilkStrategy.cs" />
+    <Compile Include="Strategies\BasicRecipes\CoffeeWithSugarStrategy.cs" />
+    <Compile Include="Strategies\BasicRecipes\EspressoWithMilkStrategy.cs" />
+    <Compile Include="Strategies\BasicRecipes\EspressoWIthSugarAndMilkStrategy.cs" />
+    <Compile Include="Strategies\BasicRecipes\EspressoWithSugarStrategy.cs" />
     <Compile Include="Strategies\BasicRecipes\HotChocolateDeluxeStrategy.cs" />
     <Compile Include="Strategies\BasicRecipes\HotChocolateStrategy.cs" />
     <Compile Include="Strategies\BasicRecipes\CoffeeStrategy.cs" />
+    <Compile Include="Strategies\BasicRecipes\CoffeeWithMilkAndSugarStrategy.cs" />
     <Compile Include="Strategies\DrinkStrategyFactory.cs" />
     <Compile Include="Strategies\BasicRecipes\EspressoStrategy.cs" />
     <Compile Include="Strategies\IDrinkStrategy.cs" />

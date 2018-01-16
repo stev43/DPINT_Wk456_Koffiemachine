@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using KoffieMachineDomain.Decorator;
+
+namespace KoffieMachineDomain.Strategies.BasicRecipes
+{
+    public class CoffeeWithMilkStrategy : IDrinkStrategy
+    {
+        public const string Name = "Coffee with Milk";
+
+        public Drink CreateDrink(Strength strength, Amount sugarAmount, Amount milkAmount)
+        {
+            Drink drink = new Coffee(strength);
+
+            return new MilkDrink(milkAmount, drink);
+        }
+    }
+}

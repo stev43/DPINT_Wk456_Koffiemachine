@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TeaAndChocoLibrary;
 
 namespace KoffieMachineDomain
 {
-    public class Tea : Drink
+    public class HotChocoloate : Drink
     {
-        public TeaBlend Blend { get; set; }
+        protected bool _isDeluxe { get; set; }
         public Amount Amount { get; set; }
 
         private string _name;
@@ -24,16 +23,17 @@ namespace KoffieMachineDomain
             return BaseDrinkPrice;
         }
 
-        public Tea(Amount amount = Amount.Normal)
+        public HotChocoloate(bool isDeluxe = false, Amount amount = Amount.Normal)
         {
             Amount = amount;
-            Name = "Teas";
+            _isDeluxe = isDeluxe;
+            Name = "HotChocolate";
         }
 
         public override void LogDrinkMaking(ICollection<string> log)
         {
             base.LogDrinkMaking(log);
-            log.Add($"Dispensing Blend {Blend.Name}.");
+            log.Add($"Dispensing Blend {Name}.");
             log.Add($"Setting tea amount to {Amount}.");
             log.Add("Filling with HotWater...");
 

@@ -18,10 +18,10 @@ namespace KoffieMachineDomain
             set { _name = value; }
         }
 
-        public Coffee()
+        public Coffee(Strength strength = Strength.Normal, Amount amount = Amount.Normal)
         {
-            DrinkStrength = Strength.Normal;
-            Amount = Amount.Normal;
+            DrinkStrength = strength;
+            Amount = amount;
             Name = "Koffie";
         }
 
@@ -41,7 +41,7 @@ namespace KoffieMachineDomain
         {
             base.LogDrinkMaking(log);
             log.Add($"Setting coffee strength to {DrinkStrength}.");
-            log.Add($"Setting coffee amount to {Amount.Few}.");
+            log.Add($"Setting coffee amount to {Amount}.");
             log.Add("Filling with coffee...");
         }
     }

@@ -1,26 +1,33 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using KoffieMachineDomain;
+using KoffieMachineDomain.Adapter;
 using KoffieMachineDomain.Decorator;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Input;
+using KoffieMachineDomain.Strategies;
 
 namespace Dpint_wk456_KoffieMachine.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private DrinkFactory _coffeeFactory;
+        private DrinkFactory _drinkFactory;
+        private DrinkStrategyFactory _strategyFactory;
         private Dictionary<string, double> _cashOnCards;
         public ObservableCollection<string> LogText { get; private set; }
 
         public MainViewModel()
         {
-            _coffeeFactory = new DrinkFactory();
-            _coffeeFactory.AddDrinkToList("Coffee", typeof(Coffee));
-            _coffeeFactory.AddDrinkToList("Espresso", typeof(Espresso));
+            _strategyFactory = new DrinkStrategyFactory();
+            _drinkFactory = new DrinkFactory();
+            _drinkFactory.AddDrinkToList("Coffee", typeof(Coffee));
+            _drinkFactory.AddDrinkToList("Espresso", typeof(Espresso));
+            _drinkFactory.AddDrinkToList("Tea", typeof(TeaAdapter));
+            _drinkFactory.AddDrinkToList("HotChocolate", typeof(HotChocolateAdapter));
 
 
             _coffeeStrength = Strength.Normal;
@@ -39,6 +46,20 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             PaymentCardUsernames = new ObservableCollection<string>(_cashOnCards.Keys);
             SelectedPaymentCardUsername = PaymentCardUsernames[0];
         }
+
+        #region tea properties
+        public ObservableCollection<string> TeaBlendNames { get; set; }
+        private string _selectedBlend;
+        public string SelectedBlend
+        {
+            get { return _selectedBlend; }
+            set
+            {
+                _selectedBlend = value;
+                RaisePropertyChanged(() => TeaBlendNames);
+            }
+        }
+        #endregion
 
         #region Drink properties to bind to
         private Drink _selectedDrink;
@@ -120,7 +141,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             get { return _remainingPriceToPay; }
             set { _remainingPriceToPay = value; RaisePropertyChanged(() => RemainingPriceToPay); }
         }
-        #endregion Payment
+        #endregion Payment   
 
         #region Coffee buttons
         private Strength _coffeeStrength;
@@ -146,29 +167,14 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
 
         public ICommand DrinkCommand => new RelayCommand<string>((drinkName) =>
         {
-            _selectedDrink = null;
-
-            switch (drinkName)
+            if (_strategyFactory.DrinkNames.Contains(drinkName))
             {
-                case "Coffee":
-                    _selectedDrink = _coffeeFactory.GetDrink(drinkName);
-                    ((Coffee)_selectedDrink).DrinkStrength = CoffeeStrength;
-                    break;
-                case "Espresso":
-                    _selectedDrink = _coffeeFactory.GetDrink(drinkName);
-                    break;
-                case "Capuccino":
-                    _selectedDrink = new Capuccino();
-                    break;
-                case "Wiener Melange":
-                    _selectedDrink = new WienerMelange();
-                    break;
-                case "Café au Lait":
-                    _selectedDrink = new CafeAuLait();
-                    break;
-                default:
-                    LogText.Add($"Could not make {drinkName}, recipe not found.");
-                    break;
+                _selectedDrink = _strategyFactory.GetStrategy(drinkName)
+                    .CreateDrink(_coffeeStrength, _sugarAmount, _milkAmount);
+            }
+            else
+            {
+                LogText.Add($"Could not make {drinkName}, recipe not found.");
             }
 
             if (_selectedDrink != null)
@@ -189,17 +195,20 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             switch (drinkName)
             {
                 case "Coffee":
-                    _selectedDrink = _coffeeFactory.GetDrink(drinkName);
+                    _selectedDrink = _drinkFactory.GetDrink(drinkName);
                     ((Coffee)_selectedDrink).DrinkStrength = CoffeeStrength;
                     break;
                 case "Espresso":
-                    _selectedDrink = _coffeeFactory.GetDrink(drinkName);
+                    _selectedDrink = _drinkFactory.GetDrink(drinkName);
                     break;
                 case "Capuccino":
                     _selectedDrink = new Capuccino();
                     break;
                 case "Wiener Melange":
                     _selectedDrink = new WienerMelange();
+                    break;
+                case "Tea":
+                    _selectedDrink = _drinkFactory.GetDrink(drinkName);
                     break;
                 default:
                     LogText.Add($"Could not make {drinkName} with sugar, recipe not found.");
@@ -223,11 +232,11 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             switch (drinkName)
             {
                 case "Coffee":
-                    _selectedDrink = _coffeeFactory.GetDrink(drinkName);
+                    _selectedDrink = _drinkFactory.GetDrink(drinkName);
                     ((Coffee)_selectedDrink).DrinkStrength = CoffeeStrength;
                     break;
                 case "Espresso":
-                    _selectedDrink = _coffeeFactory.GetDrink(drinkName);
+                    _selectedDrink = _drinkFactory.GetDrink(drinkName);
                     break;
                 default:
                     LogText.Add($"Could not make {drinkName} with milk, recipe not found.");
@@ -253,11 +262,11 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             switch (drinkName)
             {
                 case "Coffee":
-                    _selectedDrink = _coffeeFactory.GetDrink(drinkName);
+                    _selectedDrink = _drinkFactory.GetDrink(drinkName);
                     ((Coffee)_selectedDrink).DrinkStrength = CoffeeStrength;
                     break;
                 case "Espresso":
-                    _selectedDrink = _coffeeFactory.GetDrink(drinkName);
+                    _selectedDrink = _drinkFactory.GetDrink(drinkName);
                     break;
                 default:
                     LogText.Add($"Could not make {drinkName} with milk, recipe not found.");

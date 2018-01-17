@@ -20,8 +20,6 @@ namespace KoffieMachineDomain
         public override void LogDrinkMaking(ICollection<string> log)
         {
             base.LogDrinkMaking(log);
-            log.Add("Filling with coffee...");
-
 
             log.Add("Adding milk to coffee...");
             log.Add($"Finished making {Name}");

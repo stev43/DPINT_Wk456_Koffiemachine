@@ -49,7 +49,6 @@
     <Compile Include="CafeAuLait.cs" />
     <Compile Include="Capuccino.cs" />
     <Compile Include="Coffee.cs" />
-    <Compile Include="DrinkFactory.cs" />
     <Compile Include="Drink.cs" />
     <Compile Include="Decorator\DrinkDecorator.cs" />
     <Compile Include="Decorator\MilkDrink.cs" />

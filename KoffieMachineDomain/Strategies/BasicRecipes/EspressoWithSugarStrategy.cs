@@ -11,7 +11,7 @@ namespace KoffieMachineDomain.Strategies.BasicRecipes
     {
         public const String Name = "EspressoWithSugar";
 
-        public Drink CreateDrink(Strength strength, Amount sugarAmount, Amount milkAmount)
+        public Drink CreateDrink(Strength strength, Amount sugarAmount, Amount milkAmount, string blend)
         {
             Drink drink = new Capuccino();
             return new SugarDrink(sugarAmount, drink);

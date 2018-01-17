@@ -15,6 +15,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
+        private TeaBlendRepository _blendRepository;
         private DrinkStrategyFactory _strategyFactory;
         private Dictionary<string, double> _cashOnCards;
         public ObservableCollection<string> LogText { get; private set; }
@@ -22,6 +23,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         public MainViewModel()
         {
             _strategyFactory = new DrinkStrategyFactory();
+            _blendRepository = new TeaBlendRepository();
 
 
             _coffeeStrength = Strength.Normal;
@@ -42,7 +44,10 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         }
 
         #region tea properties
-        public ObservableCollection<string> TeaBlendNames { get; set; }
+        public ObservableCollection<string> TeaBlendNames
+        {
+            get { return new ObservableCollection<string>(_blendRepository.GetNames()); }
+        }
         private string _selectedBlend;
         public string SelectedBlend
         {
@@ -50,7 +55,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             set
             {
                 _selectedBlend = value;
-                RaisePropertyChanged(() => TeaBlendNames);
+                RaisePropertyChanged(() => SelectedBlend);
             }
         }
         #endregion

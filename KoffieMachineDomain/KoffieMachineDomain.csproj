@@ -75,6 +75,7 @@
     <Compile Include="Strategies\BasicRecipes\WienerMelangeStrategy.cs" />
     <Compile Include="Strength.cs" />
     <Compile Include="Tea.cs" />
+    <Compile Include="TeaBlendRepository.cs" />
     <Compile Include="WienerMelange.cs" />
   </ItemGroup>
   <ItemGroup />

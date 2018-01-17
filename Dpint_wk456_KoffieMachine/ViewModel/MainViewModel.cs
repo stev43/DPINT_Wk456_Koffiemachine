@@ -44,11 +44,14 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         }
 
         #region tea properties
+
         public ObservableCollection<string> TeaBlendNames
         {
             get { return new ObservableCollection<string>(_blendRepository.GetNames()); }
         }
+
         private string _selectedBlend;
+
         public string SelectedBlend
         {
             get { return _selectedBlend; }
@@ -58,10 +61,13 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
                 RaisePropertyChanged(() => SelectedBlend);
             }
         }
+
         #endregion
 
         #region Drink properties to bind to
+
         private Drink _selectedDrink;
+
         public string SelectedDrinkName
         {
             get { return _selectedDrink?.Name; }
@@ -71,22 +77,33 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         {
             get { return _selectedDrink?.GetPrice(); }
         }
+
         #endregion Drink properties to bind to
 
         #region Payment
+
         public RelayCommand PayByCardCommand => new RelayCommand(() =>
         {
-            PayDrink(payWithCard: true);
+            PayDrinkByCard();
+            if (RemainingPriceToPay == 0 && _selectedDrink != null)
+            {
+                PrepareDrink();
+            }
         });
 
         public ICommand PayByCoinCommand => new RelayCommand<double>(coinValue =>
         {
-            PayDrink(payWithCard: false, insertedMoney: coinValue);
+            PayDrinkByCoin(coinValue);
+            if (RemainingPriceToPay == 0 && _selectedDrink != null)
+            {
+                PrepareDrink();
+            }
         });
 
-        private void PayDrink(bool payWithCard, double insertedMoney = 0)
+        public void PayDrinkByCard()
         {
-            if (_selectedDrink != null && payWithCard)
+            double insertedMoney;
+            if (_selectedDrink != null)
             {
                 insertedMoney = _cashOnCards[SelectedPaymentCardUsername];
                 if (RemainingPriceToPay <= insertedMoney)
@@ -100,29 +117,30 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
 
                     RemainingPriceToPay -= insertedMoney;
                 }
-                LogText.Add($"Inserted {insertedMoney.ToString("C", CultureInfo.CurrentCulture)}, Remaining: {RemainingPriceToPay.ToString("C", CultureInfo.CurrentCulture)}.");
+                LogText.Add(
+                    $"Inserted {insertedMoney.ToString("C", CultureInfo.CurrentCulture)}, Remaining: {RemainingPriceToPay.ToString("C", CultureInfo.CurrentCulture)}.");
                 RaisePropertyChanged(() => PaymentCardRemainingAmount);
-            }
-            else if (_selectedDrink != null && !payWithCard)
-            {
-                RemainingPriceToPay = Math.Max(Math.Round(RemainingPriceToPay - insertedMoney, 2), 0);
-                LogText.Add($"Inserted {insertedMoney.ToString("C", CultureInfo.CurrentCulture)}, Remaining: {RemainingPriceToPay.ToString("C", CultureInfo.CurrentCulture)}.");
-            }
-
-            if (_selectedDrink != null && RemainingPriceToPay == 0)
-            {
-                _selectedDrink.LogDrinkMaking(LogText);
-                LogText.Add($"Finished making {_selectedDrink.Name}");
-                LogText.Add("------------------");
-                _selectedDrink = null;
             }
         }
 
+        public void PayDrinkByCoin(double insertedMoney)
+        {
+            if (_selectedDrink != null)
+            {
+                RemainingPriceToPay = Math.Max(Math.Round(RemainingPriceToPay - insertedMoney, 2), 0);
+                LogText.Add(
+                    $"Inserted {insertedMoney.ToString("C", CultureInfo.CurrentCulture)}, Remaining: {RemainingPriceToPay.ToString("C", CultureInfo.CurrentCulture)}.");
+            }
+        }
 
-        public double PaymentCardRemainingAmount => _cashOnCards.ContainsKey(SelectedPaymentCardUsername ?? "") ? _cashOnCards[SelectedPaymentCardUsername] : 0;
+        public double PaymentCardRemainingAmount => _cashOnCards.ContainsKey(SelectedPaymentCardUsername ?? "")
+            ? _cashOnCards[SelectedPaymentCardUsername]
+            : 0;
 
         public ObservableCollection<string> PaymentCardUsernames { get; set; }
+
         private string _selectedPaymentCardUsername;
+
         public string SelectedPaymentCardUsername
         {
             get { return _selectedPaymentCardUsername; }
@@ -135,33 +153,55 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         }
 
         private double _remainingPriceToPay;
+
         public double RemainingPriceToPay
         {
             get { return _remainingPriceToPay; }
-            set { _remainingPriceToPay = value; RaisePropertyChanged(() => RemainingPriceToPay); }
+            set
+            {
+                _remainingPriceToPay = value;
+                RaisePropertyChanged(() => RemainingPriceToPay);
+            }
         }
+
         #endregion Payment   
 
         #region Coffee buttons
+
         private Strength _coffeeStrength;
+
         public Strength CoffeeStrength
         {
             get { return _coffeeStrength; }
-            set { _coffeeStrength = value; RaisePropertyChanged(() => CoffeeStrength); }
+            set
+            {
+                _coffeeStrength = value;
+                RaisePropertyChanged(() => CoffeeStrength);
+            }
         }
 
         private Amount _sugarAmount;
+
         public Amount SugarAmount
         {
             get { return _sugarAmount; }
-            set { _sugarAmount = value; RaisePropertyChanged(() => SugarAmount); }
+            set
+            {
+                _sugarAmount = value;
+                RaisePropertyChanged(() => SugarAmount);
+            }
         }
 
         private Amount _milkAmount;
+
         public Amount MilkAmount
         {
             get { return _milkAmount; }
-            set { _milkAmount = value; RaisePropertyChanged(() => MilkAmount); }
+            set
+            {
+                _milkAmount = value;
+                RaisePropertyChanged(() => MilkAmount);
+            }
         }
 
         public ICommand DrinkCommand => new RelayCommand<string>((drinkName) =>
@@ -179,13 +219,24 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             if (_selectedDrink != null)
             {
                 RemainingPriceToPay = _selectedDrink.GetPrice();
-                LogText.Add($"Selected {_selectedDrink.Name}, price: {RemainingPriceToPay.ToString("C", CultureInfo.CurrentCulture)}");
+                LogText.Add(
+                    $"Selected {_selectedDrink.Name}, price: {RemainingPriceToPay.ToString("C", CultureInfo.CurrentCulture)}");
                 RaisePropertyChanged(() => RemainingPriceToPay);
                 RaisePropertyChanged(() => SelectedDrinkName);
                 RaisePropertyChanged(() => SelectedDrinkPrice);
             }
         });
 
-        #endregion Coffee buttons
+        private void PrepareDrink()
+        {
+            if (RemainingPriceToPay == 0)
+            {
+                _selectedDrink.LogDrinkMaking(LogText);
+                LogText.Add($"Finished making {_selectedDrink.Name}");
+                LogText.Add("------------------");
+                _selectedDrink = null;
+            }
+        }
+        #endregion Coffee buttons        
     }
 }

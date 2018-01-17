@@ -8,5 +8,6 @@ namespace Dpint_wk456_KoffieMachine
 {
     class Payment:Observable<Payment>
     {
+
     }
 }

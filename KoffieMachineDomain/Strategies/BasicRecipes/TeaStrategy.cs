@@ -10,7 +10,7 @@ namespace KoffieMachineDomain.Strategies.BasicRecipes
     public class TeaStrategy : IDrinkStrategy
     {
         public const string Name = "Tea";
-        public Drink CreateDrink(Strength strength, Amount sugarAmount, Amount milkAmount)
+        public Drink CreateDrink(Strength strength, Amount sugarAmount, Amount milkAmount, string blend)
         {
             return new TeaAdapter();
         }

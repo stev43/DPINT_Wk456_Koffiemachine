@@ -11,7 +11,7 @@ namespace KoffieMachineDomain.Strategies.BasicRecipes
     {
         public const String Name = "Chocolate Deluxe";
 
-        public Drink CreateDrink(Strength strength, Amount sugarAmount, Amount milkAmount)
+        public Drink CreateDrink(Strength strength, Amount sugarAmount, Amount milkAmount, string blend)
         {
             return new HotChocolateAdapter(true);
         }

@@ -138,7 +138,7 @@
                 <!--<TextBlock TextWrapping="WrapWithOverflow" Width="250">How to choose your teablend? //TODO: Make this work!</TextBlock>-->
                 <StackPanel>
                     <TextBlock TextWrapping="WrapWithOverflow">Select a blend</TextBlock>
-                <ComboBox ItemsSource="{Binding PaymentCardUsernames}" SelectedValue="{Binding SelectedPaymentCardUsername}" />
+                <ComboBox ItemsSource="{Binding TeaBlendNames}" SelectedValue="{Binding SelectedBlend}" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>

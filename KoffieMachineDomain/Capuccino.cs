@@ -23,7 +23,6 @@ namespace KoffieMachineDomain
         {
             base.LogDrinkMaking(log);
             log.Add($"Setting coffee strength to {DrinkStrength}.");
-            log.Add("Filling with coffee...");
 
             log.Add($"Finished making {Name}");
         }

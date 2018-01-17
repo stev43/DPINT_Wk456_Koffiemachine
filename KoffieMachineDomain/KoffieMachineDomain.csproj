@@ -63,7 +63,7 @@
     <Compile Include="Strategies\BasicRecipes\CoffeeWithMilkStrategy.cs" />
     <Compile Include="Strategies\BasicRecipes\CoffeeWithSugarStrategy.cs" />
     <Compile Include="Strategies\BasicRecipes\EspressoWithMilkStrategy.cs" />
-    <Compile Include="Strategies\BasicRecipes\EspressoWIthSugarAndMilkStrategy.cs" />
+    <Compile Include="Strategies\BasicRecipes\EspressoWithMilkAndSugarStrategy.cs" />
     <Compile Include="Strategies\BasicRecipes\EspressoWithSugarStrategy.cs" />
     <Compile Include="Strategies\BasicRecipes\HotChocolateDeluxeStrategy.cs" />
     <Compile Include="Strategies\BasicRecipes\HotChocolateStrategy.cs" />

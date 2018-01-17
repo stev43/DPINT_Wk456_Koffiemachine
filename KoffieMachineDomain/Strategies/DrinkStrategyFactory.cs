@@ -33,6 +33,7 @@ namespace KoffieMachineDomain.Strategies
             _strategyDictionairy[WienerMelangeStrategy.Name] = new WienerMelangeStrategy();
             _strategyDictionairy[CafeAuLaitStrategy.Name] = new CafeAuLaitStrategy();
             _strategyDictionairy[TeaStrategy.Name] = new TeaStrategy();
+            _strategyDictionairy[TeaWithSugarStrategy.Name] = new TeaWithSugarStrategy();
             _strategyDictionairy[HotChocolateStrategy.Name] = new HotChocolateStrategy();
             _strategyDictionairy[HotChocolateDeluxeStrategy.Name] = new HotChocolateDeluxeStrategy();
         }

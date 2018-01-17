@@ -11,14 +11,10 @@ namespace KoffieMachineDomain.Adapter
     public class TeaAdapter : Tea
     {
         private TeaAndChocoLibrary.Tea _tea;
-        TeaAdapter(TeaAndChocoLibrary.Tea tea)
-        {
-            _tea = tea;
-        }
-
-        public TeaAdapter()
+        public TeaAdapter(TeaBlend blend)
         {
             _tea = new TeaAndChocoLibrary.Tea();
+            TeaBlend = blend;
         }
 
         public TeaBlend TeaBlend

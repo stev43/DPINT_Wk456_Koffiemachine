@@ -68,6 +68,7 @@
     <Compile Include="Strategies\BasicRecipes\HotChocolateStrategy.cs" />
     <Compile Include="Strategies\BasicRecipes\CoffeeStrategy.cs" />
     <Compile Include="Strategies\BasicRecipes\CoffeeWithMilkAndSugarStrategy.cs" />
+    <Compile Include="Strategies\BasicRecipes\TeaWithSugarStrategy.cs" />
     <Compile Include="Strategies\DrinkStrategyFactory.cs" />
     <Compile Include="Strategies\BasicRecipes\EspressoStrategy.cs" />
     <Compile Include="Strategies\IDrinkStrategy.cs" />

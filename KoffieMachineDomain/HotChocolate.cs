@@ -33,10 +33,11 @@ namespace KoffieMachineDomain
         public override void LogDrinkMaking(ICollection<string> log)
         {
             base.LogDrinkMaking(log);
-            log.Add($"Dispensing Blend {Name}.");
-            log.Add($"Setting tea amount to {Amount}.");
-            log.Add("Filling with HotWater...");
-
+            log.Add($"Filling with hot chocolate.");
+            if (_isDeluxe)
+            {
+                log.Add($"Adding special ingredients.");
+            }
         }
     }
 }

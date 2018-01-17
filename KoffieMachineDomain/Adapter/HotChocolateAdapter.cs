@@ -11,16 +11,6 @@ namespace KoffieMachineDomain.Adapter
     {
         private TeaAndChocoLibrary.HotChocolate _hotChocolate;
 
-        HotChocolateAdapter(TeaAndChocoLibrary.HotChocolate hotChocolate, bool isDeluxe = false)
-        {
-            _hotChocolate = hotChocolate;
-            if (isDeluxe)
-            {
-                _hotChocolate.MakeDeluxe();
-            }
-            _isDeluxe = isDeluxe;
-        }
-
         public HotChocolateAdapter(bool isDeluxe = false)
         {
             _hotChocolate = new HotChocolate();
@@ -29,11 +19,6 @@ namespace KoffieMachineDomain.Adapter
                 _hotChocolate.MakeDeluxe();
             }
             _isDeluxe = isDeluxe;
-        }
-
-        public Amount Amount
-        {
-            get { return Amount.Normal; }
         }
 
         public override string Name
